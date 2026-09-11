@@ -1,0 +1,23 @@
+-- Exercício B
+Create Procedure spInserirProdutos
+	@nomeProduto Varchar(20),
+	@precoProduto Money,
+	@idCategoria Int
+
+As
+Begin
+	Declare @idProduto Int 
+		If Exists (Select nomeProduto From tbProduto Where nomeProduto like @nomeProduto)
+		Begin
+			Print('Não é possível realizar o cadastro! '+@nomeProduto+' já existe.')
+		End
+		Else
+		Begin
+			Insert tbProduto(nomeProduto, precoKioProduto, idCategoriaProduto) Values (@nomeProduto, @precoProduto, @idCategoria)
+			Set @idProduto = (Select Max(idProduto) From tbProduto)
+			Print('Produto '+@nomeProduto+' cadastrada com sucesso, ID:	' +Convert(Varchar(5), @idProduto) )
+		End
+End
+
+Exec spInserirProdutos 'Bolo Floresta Negra', '42.00', 1
+Select * From tbProduto
