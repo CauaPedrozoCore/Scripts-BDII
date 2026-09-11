@@ -16,6 +16,7 @@ Begin
 		End
 End
 
+--Inserts
 Exec spInserirCategorias 'Bolo Festa'
 Exec spInserirCategorias 'Bolo Simples'
 Exec spInserirCategorias 'Torta'
