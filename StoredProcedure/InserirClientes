@@ -31,5 +31,11 @@ Begin
 		End
 End
 
+--Inserts
 Exec spInserirClientes 'Samira Fatah', '05-05-1990', 'Rua Aguapeí', 1000, '08.090-000', 'Guaianases', 'São Paulo','SP', '111.222.333-11', 'F'
+Exec spInserirClientes 'Celia Nogueira', '06-06-1992', 'Rua Andes', 234, '08.456-090', 'Guaianases', 'São Paulo','SP', '111.111.111-11', 'F'
+Exec spInserirClientes 'Paulo Cesar Siqueira', '04-04-1984', 'Rua Castelo do Piauí', 232, '08.109-000', 'Itaquera', 'São Paulo','SP', '222.222.222-22', 'M'
+Exec spInserirClientes 'Rodrigo Favaroni', '09-04-1991', 'Rua Sansão Castelo Branco', 10, '08.431-123', 'Guaianases', 'São Paulo','SP', '333.333.333-33', 'M'
+Exec spInserirClientes 'Flávia Regina Brito', '22-04-1992', 'Rua Mariano Moro', 300, '08.200-123', 'Itaquera', 'São Paulo','SP', '444.444.444-44', 'F'
+
 Select * From tbCliente
