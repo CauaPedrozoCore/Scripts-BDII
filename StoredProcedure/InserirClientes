@@ -18,7 +18,7 @@ Begin
 		Begin
 			Print('Não é possível realizar o cadastro! '+@nomeCl+' o CPF já existe.')
 		End
-		Else If Exists (Select bairroCliente From tbCliente Where bairroCliente Like 'Guaianases' Or bairroCliente Like 'Itaquera')
+		Else If Not Exists (Select bairroCliente From tbCliente Where bairroCliente Like 'Guaianases' Or bairroCliente Like 'Itaquera')
     Begin
 			Print('Não é possível realizar o cadastro! Pois o '+@bairroCl+' não é atendido pela confeitaria.')
     End
