@@ -8,10 +8,17 @@ As
 Begin 
 	Insert tbItensEncomenda(idEncomenda, idProduto, qtdKilos, subTotal)
 			Values (@idEnc, @idProd, @qtdKilos, @subTotal)
-		Print('Item cadastrado com sucesso')
 End
 
-Exec spItensEnc 1, 1, '2.5', '105.00'
-Exec spItensEnc 1, 1, '2.5', '105.00'
+Exec spItensEnc 1, 1, 2.5, 105.00
+Exec spItensEnc 1, 10, 2.6, 70.00
+Exec spItensEnc 1, 9, 6, 150.00
+Exec spItensEnc 1, 12, 4.3, 125.00
+Exec spItensEnc 2, 9, 8, 200.00
+Exec spItensEnc 3, 11, 3.2, 100.00
+Exec spItensEnc 3, 9, 2, 50.00
+Exec spItensEnc 4, 2, 3.5, 150.00
+Exec spItensEnc 4, 3, 2.2, 100.00
+Exec spItensEnc 5, 6, 3.4, 150.00
 
 Select * From tbItensEncomenda
