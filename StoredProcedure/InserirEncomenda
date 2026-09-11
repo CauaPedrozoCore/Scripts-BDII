@@ -1,0 +1,27 @@
+--Exercício D
+Create Procedure spInserirEncomenda
+	@cpfCl Varchar(15),
+	@dataEnc SmallDateTime,
+	@valorTotal Money,
+	@dataEntrega SmallDateTime
+As
+Begin
+	Declare @idCl Int
+	Declare @nomeCl Varchar(50)
+	Declare @idEnc Int
+
+	Select @idCl = idCliente, @nomeCl = nomeCliente From tbCliente Where cpfCliente Like @cpfCl
+	If @idCl Is Null
+	Begin
+		Print('Não foi possível efetivar a encomenda pois o cliente ' + @cpfCl + ' não está cadastrado')
+	End
+	Else
+	Begin
+		Insert Into tbEncomenda(dataEncomenta, idCliente, valorTotalEncomenda, dataEntregaEncomenda)
+		Values (@dataEnc, @idCl, @valorTotal, @dataEntrega)
+
+		Set @idEnc = (Select Max(idEncomenda) From tbEncomenda)
+
+		Print('Encomenda ' + Convert(Varchar(5), @idEnc) + ' para o cliente ' + @nomeCl + ' efetuada com sucesso')
+	End
+End
