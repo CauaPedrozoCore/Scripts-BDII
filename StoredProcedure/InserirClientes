@@ -1,0 +1,35 @@
+-- Exercício C
+Create Procedure spInserirClientes
+	@nomeCl Varchar(50),
+	@dataNasc SmallDateTime,
+	@ruaCl Varchar(40),
+	@casaCl Int,
+	@cepCl Char(10),
+	@bairroCl Varchar(30),
+	@cidadeCl Varchar(25),
+	@estadoCl Char(2),
+	@cpfCl Varchar(15),
+	@sexoCl Char(1)
+
+As
+Begin
+	Declare @idCl Int 
+		If Exists (Select cpfCliente From tbCliente Where cpfCliente Like @cpfCl)
+		Begin
+			Print('Não é possível realizar o cadastro! '+@nomeCl+' o CPF já existe.')
+		End
+		Else If Exists (Select bairroCliente From tbCliente Where bairroCliente Like 'Guaianases' Or bairroCliente Like 'Itaquera')
+    Begin
+			Print('Não é possível realizar o cadastro! Pois o '+@bairroCl+' não é atendido pela confeitaria.')
+    End
+		Else
+		Begin
+			Insert tbCliente(nomeCliente, dataNascCliente, ruaCliente, ruaCasaCliente, cepCliente, bairroCliente, cidadeCliente, estadoCliente,
+			cpfCliente, sexoCliente) Values (@nomeCl,@dataNasc, @ruaCl, @casaCl, @cepCl, @bairroCl, @cidadeCl, @estadoCl, @cpfCl, @sexoCl)
+			Set @idCl = (Select Max(idCliente) From tbCliente)
+			Print('Cliente '+@nomeCl+' cadastrada com sucesso, ID:	' +Convert(Varchar(5), @idCl) )
+		End
+End
+
+Exec spInserirClientes 'Samira Fatah', '05-05-1990', 'Rua Aguapeí', 1000, '08.090-000', 'Guaianases', 'São Paulo','SP', '111.222.333-11', 'F'
+Select * From tbCliente
