@@ -1,0 +1,17 @@
+--Exercício E
+Create Procedure spItensEnc 
+	@idEnc Int,
+	@idProd Int,
+	@qtdKilos Float,
+	@subTotal Money
+As
+Begin 
+	Insert tbItensEncomenda(idEncomenda, idProduto, qtdKilos, subTotal)
+			Values (@idEnc, @idProd, @qtdKilos, @subTotal)
+		Print('Item cadastrado com sucesso')
+End
+
+Exec spItensEnc 1, 1, '2.5', '105.00'
+Exec spItensEnc 1, 1, '2.5', '105.00'
+
+Select * From tbItensEncomenda
