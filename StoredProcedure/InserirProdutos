@@ -19,5 +19,18 @@ Begin
 		End
 End
 
+-- Inserts
 Exec spInserirProdutos 'Bolo Floresta Negra', '42.00', 1
+Exec spInserirProdutos 'Bolo Prestígio', '43.00', 1
+Exec spInserirProdutos 'Bolo Nutella', '44.00', 1
+Exec spInserirProdutos 'Bolo Formigueiro', '17.00', 2
+Exec spInserirProdutos 'Bolo Cenoura', '19;00', 2
+Exec spInserirProdutos 'Torta de Palmito', '54.00', 3
+Exec spInserirProdutos 'Torta de Frango e Catupiry', '47.00', 3
+Exec spInserirProdutos 'Torta de Escarola', '44.00', 3
+Exec spInserirProdutos 'Coxinha de Frango', '25.00', 4
+Exec spInserirProdutos 'Esfiha de Carne', '27.00', 4
+Exec spInserirProdutos 'Folhado de Queijo', '31.00', 4
+Exec spInserirProdutos 'Risole Misto', '29.00', 4
+
 Select * From tbProduto
