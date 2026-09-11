@@ -1,0 +1,20 @@
+-- Exercício A
+Create Procedure spInserirCategorias
+	@nomeCategoria Varchar(20)
+As
+Begin
+	Declare @idCategoria Int 
+		If Exists (Select nomeCategoriaProduto From tbCategoriaProduto Where nomeCategoriaProduto like @nomeCategoria)
+		Begin
+			Print('Não é possível realizar o cadastro! '+@nomeCategoria+' já existe.')
+		End
+		Else
+		Begin
+			Insert tbCategoriaProduto(nomeCategoriaProduto) Values (@nomeCategoria)
+			Set @idCategoria = (Select Max(idCategoriaProduto) From tbCategoriaProduto)
+			Print('Categoria '+@nomeCategoria+' cadastrada com sucesso, ID:	' +Convert(Varchar(5), @idCategoria) )
+		End
+End
+
+Exec spInserirCategorias 'Salgado'
+Select * From tbCategoriaProduto
