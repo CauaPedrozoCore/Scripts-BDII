@@ -16,5 +16,9 @@ Begin
 		End
 End
 
+Exec spInserirCategorias 'Bolo Festa'
+Exec spInserirCategorias 'Bolo Simples'
+Exec spInserirCategorias 'Torta'
 Exec spInserirCategorias 'Salgado'
+
 Select * From tbCategoriaProduto
