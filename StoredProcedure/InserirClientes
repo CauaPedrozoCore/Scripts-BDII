@@ -1,7 +1,7 @@
 -- Exercício C
 Create Procedure spInserirClientes
 	@nomeCl Varchar(50),
-	@dataNasc SmallDateTime,
+	@dataNasc Date,
 	@ruaCl Varchar(40),
 	@casaCl Int,
 	@cepCl Char(10),
@@ -18,7 +18,7 @@ Begin
 		Begin
 			Print('Não é possível realizar o cadastro! '+@nomeCl+' o CPF já existe.')
 		End
-		Else If Not Exists (Select bairroCliente From tbCliente Where bairroCliente Like 'Guaianases' Or bairroCliente Like 'Itaquera')
+		Else If @bairroCl Not In ('Guaianases', 'Itaquera')
     Begin
 			Print('Não é possível realizar o cadastro! Pois o '+@bairroCl+' não é atendido pela confeitaria.')
     End
