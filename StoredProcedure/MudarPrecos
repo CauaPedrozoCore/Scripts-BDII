@@ -1,0 +1,51 @@
+--Exercício F - 1
+Create Procedure spAumentarBoloFesta
+As
+Begin
+	Update tbProduto
+	Set subTotal = subTotal * 1.10
+	Where idCategoriaProduto = (Select idCategoriaProduto From tbCategoriaProduto Where nomeCategoriaProduto Like 'Bolo Festa')
+
+	Print('Preço dos produtos da categoria Bolo Festa atualizado em +10%!')
+End
+
+--Exercício F - 2
+Create Procedure spDescontoBoloSimples
+As
+Begin
+	Update tbProduto
+	Set subTotal = subTotal * 0.8
+	Where idCategoriaProduto = (Select idCategoriaProduto From tbCategoriaProduto Where nomeCategoriaProduto Like 'Bolo Simples')
+
+	Print('Preço dos produtos da categoria Bolo simples descontado em 20%!')
+End
+
+--Exercício F - 3
+Create Procedure spAumentarTorta
+As
+Begin
+	Update tbProduto
+	Set subTotal = subTotal * 1.25
+	Where idCategoriaProduto = (Select idCategoriaProduto From tbCategoriaProduto Where nomeCategoriaProduto Like 'Torta')
+
+	Print('Preço dos produtos da categoria Torta atualizado em +25%!')
+End
+
+--Exercício F - 4
+Create Procedure spAumentarSalgado
+As
+Begin
+	Update tbProduto
+	Set subTotal = subTotal * 1.20
+	Where idCategoriaProduto = (Select idCategoriaProduto From tbCategoriaProduto Where nomeCategoriaProduto Like 'Salgado')
+	And nomeProduto Not Like 'Esfiha de carne'
+
+	Print('Preço dos salgados (exceto Esfiha de carne) atualizado em +20%!')
+End
+
+Exec spAumentarBoloFesta
+Exec spDescontoBoloSimples
+Exec spAumentarTorta
+Exec spAumentarSalgado
+
+Select * From tbProduto
