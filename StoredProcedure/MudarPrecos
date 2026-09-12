@@ -43,6 +43,7 @@ Begin
 	Print('Preço dos salgados (exceto Esfiha de carne) atualizado em +20%!')
 End
 
+--Exec
 Exec spAumentarBoloFesta
 Exec spDescontoBoloSimples
 Exec spAumentarTorta
