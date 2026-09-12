@@ -1,0 +1,44 @@
+Create Database dbConfeitaria
+Go
+ 
+Create Table tbCliente(
+    idCliente Int Primary Key Identity(1,1),
+    nomeCliente Varchar(50),
+    dataNascCliente Date,
+    ruaCliente Varchar(40),
+    ruaCasaCliente Int,
+    cepCliente Char(10),
+    bairroCliente Varchar(30),
+    cidadeCliente Varchar (25),
+    estadoCliente Char(2),
+    cpfCliente Varchar(15),
+    sexoCliente Char(1)
+);
+ 
+Create Table tbEncomenda(
+    idEncomenda Int Primary Key Identity(1,1),
+    dataEncomenta Date,
+    idCliente Int Foreign Key References tbCliente(idCliente),
+    valorTotalEncomenda Money,
+    dataEntregaEncomenda Date
+);
+ 
+Create Table tbCategoriaProduto(
+    idCategoriaProduto Int Primary Key Identity(1,1),
+    nomeCategoriaProduto Varchar(20)
+);
+ 
+Create Table tbProduto(
+    idProduto Int Primary Key Identity(1,1),
+    nomeProduto Varchar(20),
+    precoKioProduto Money,
+    idCategoriaProduto Int Foreign Key References tbCategoriaProduto(idCategoriaProduto)
+);
+ 
+Create Table tbItensEncomenda(
+    idItensEncomenda Int Primary Key Identity(1,1),
+    idEncomenda Int Foreign Key References tbEncomenda(idEncomenda),
+    idProduto Int Foreign Key References tbProduto(idProduto),
+    qtdKilos Float,
+    subTotal Money
+);
