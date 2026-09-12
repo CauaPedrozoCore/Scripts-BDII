@@ -1,0 +1,23 @@
+-- Exercício H
+Create Procedure spExcluirCliente
+	@cpfCl Varchar(15)
+As
+Begin
+	Declare @idCl Int
+  Declare @nomeCl Varchar(50)
+    Select @idCl = idCliente, @nomeCl = nomeCliente From tbCliente Where cpfCliente Like @cpfCl
+		If Exists (Select idEncomenda From tbEncomenda Where idCliente = @idCl)
+		Begin
+			Print('Impossivel remover esse cliente pois o cliente ' + @nomeCl + ' possui encomendas.')
+		End
+		Else
+		Begin
+			Delete From tbCliente Where idCliente = @idCl
+			Print('Cliente ' + @nomeCl + ' removido com sucesso.')
+		End
+End
+
+--Exec
+Exec spExcluirCliente '111.222.333-11'
+
+Select * From tbCliente
