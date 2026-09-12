@@ -1,0 +1,33 @@
+--Exercício H
+Create Procedure spExcluirItem
+	@idEnc Int,
+  @idProd Int
+As
+Begin
+	Declare @subTotalItem Money
+		If Exists (Select idEncomenda From tbEncomenda Where idEncomenda = @idEnc And dataEntregaEncomenda > GetDate())
+		Begin
+      If Exists (Select idItensEncomenda From tbItensEncomenda Where idEncomenda = @idEnc And idProduto = @idProd)
+      Begin
+        Select @subTotalItem = subTotal From tbItensEncomenda Where idEncomenda = @idEnc And idProduto = @idProd
+        Delete From tbItensEncomenda Where idEncomenda = @idEnc And idProduto = @idProd
+        Update tbEncomenda 
+			  Set valorTotalEncomenda = valorTotalEncomenda - @subTotalItem 
+        Where idEncomenda = @idEnc
+        Print('Item removido da encomenda ' + Convert(Varchar(5), @idEnc) + ' e total atualizado com sucesso!')
+		  End
+		  Else
+		  Begin
+			  Print('Produto não encontrado nesta encomenda!')
+		  End
+    End
+    Else
+    Begin
+      Print('Não é possível remover o item pois a data de entrega já passou ou é hoje.')
+	  End
+End
+
+--Exec
+Exec spExcluirItem 1, 1
+
+Select * From tbItensEncomenda
